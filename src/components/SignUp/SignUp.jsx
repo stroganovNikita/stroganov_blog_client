@@ -1,26 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Nav from '../partials/Nav/Nav';
 import classes from './signup.module.css'
 import brain from '../../assets/brain.png';
 function SignUp() {
-    const [response, setResponse] = useState(null);
+  const [response, setResponse] = useState(0);
 
-    const handleSubmit = (event) => {
-        // setResponse(event)
-        const body = event.currentTarget.elements;
-        event.preventDefault()
-        fetch('http://localhost:3000/session/new', {
-            mode: "cors",
-            method: 'POST',
-            enctype: 'application/x-www-form-urlencoded',
-            // body: {
-            //     firstname: body.firstname.value,
-            //     lastname: body.lastname.value,
-            //     nickname: body.nickname.value,
-            //     password: body.password.value,
-            //     confpassword: body.password.value 
-            // } 
-        }).then((response) => response.json()).then((response) => console.log(response))
+  const handleSubmit = (event) => {
+    const body = event.currentTarget.elements;
+    event.preventDefault();
+    fetch('http://localhost:3000/session/new', {
+      mode: "cors",
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+      firstname: body.firstname.value,
+              lastname: body.lastname.value,
+              nickname: body.nickname.value,
+              password: body.password.value,
+              confpassword: body.password.value
+            })
+        })
+        .then((response) => response.json())
+        .then((response) => { 
+            setResponse(response)
+        });
     };
 
     return (
@@ -28,11 +34,20 @@ function SignUp() {
         <Nav />
         <main className={classes.mainSignUp}>
             <form onSubmit={handleSubmit}>
-                <h2>Registration</h2>
+            <h2>Registration</h2>
+                {
+                response.errors && 
+                  <ul>
+                    {response.errors.map((error, index) => <li key={index}>{error.msg}</li>)}
+                  </ul> 
+                }
+                {
+                 response.data && <p>{response.data}</p>
+                }
                 <label htmlFor="firstname">First name</label>
-                 <input type="text" id="firstname" name="firstname" maxLength="20" required />
+                 <input type="text" id="firstname" name="firstname" minLength='5' maxLength="20" required />
                 <label htmlFor="lastname">Last name</label>
-                 <input type="text" id="lastname" name="lastname" maxLength="20"  required />
+                 <input type="text" id="lastname" name="lastname" minLength='5' maxLength="20"  required />
                 <label htmlFor="nickname">Nickname</label>
                  <input type="text" id="nickname" name="nickname" maxLength="20"  required />
                 <label htmlFor="password">Password</label>

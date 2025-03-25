@@ -45,6 +45,18 @@
     background-color: #51d0de;
     color: #e000b3;
 }
+.mainSignUp ul {
+    padding-left: 20px;
+}
+.mainSignUp li {
+    color: red;
+    text-align: center;
+    font-size: 1.2rem;
+}
+.mainSignUp p {
+    font-size: 1.2rem;
+    color: green;
+}
 .brain {
     display: block;
     position: fixed;
