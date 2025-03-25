@@ -1,11 +1,11 @@
-.mainSignUp {
+.mainLogIn {
   display: flex;
   justify-content: center;
   font-family: "Roboto";
   margin-top: 50px;
   margin-bottom: 50px;
 }
-.mainSignUp form {
+.mainLogIn form {
   display: flex;
   background-color: white;
   border-radius: 20px;
@@ -14,20 +14,22 @@
   align-items: center;
   flex-direction: column;
 }
-.mainSignUp h2 {
+.mainLogIn h2 {
   letter-spacing: 1px;
   color: #bf4aa8;
 }
-.mainSignUp label {
+
+.mainLogIn label {
   font-size: 1.3rem;
   margin-bottom: 5px;
 }
-.mainSignUp input {
+
+.mainLogIn input {
   font-size: 1.3rem;
   margin-bottom: 15px;
   padding: 5px;
 }
-.mainSignUp button {
+.mainLogIn button {
   background-color: #bf4aa8;
   color: #51d0de;
   font-family: "Roboto";
@@ -41,22 +43,11 @@
   transition: background-color 0.4s, color 0.4s;
   cursor: pointer;
 }
-.mainSignUp button:hover {
+.mainLogIn button:hover {
   background-color: #51d0de;
   color: #e000b3;
 }
-.mainSignUp ul {
-  padding-left: 20px;
-}
-.mainSignUp li {
-  color: red;
-  text-align: center;
-  font-size: 1.2rem;
-}
-.mainSignUp p {
-  font-size: 1.2rem;
-  color: green;
-}
+
 .brain {
   display: block;
   position: fixed;
@@ -66,6 +57,7 @@
   height: auto;
   background-size: cover;
 }
+
 .textBeforeBrain {
   position: fixed;
   right: 4%;
@@ -75,10 +67,10 @@
   animation-delay: 0.9s;
 }
 .infoAuth {
-  text-align: center;
-  margin-top: 10rem;
-  color: #b40090;
-  font-size: 2rem;
+    text-align: center;
+    margin-top: 10rem;
+    color: #b40090;
+    font-size: 2rem;
 }
 
 @keyframes appearText {

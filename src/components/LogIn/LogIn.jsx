@@ -1,40 +1,35 @@
 import { useState, useEffect } from "react";
-import validity from '../javascript/checkTokenFetch';
+import validity from "../javascript/checkTokenFetch";
 import Nav from "../partials/Nav/Nav";
-import classes from "./signup.module.css";
+import classes from "./login.module.css";
 import brain from "../../assets/brain.png";
 
-function SignUp() {
+function LogIn() {
   const [response, setResponse] = useState(0);
   const [checkToken, setCheckToken] = useState(0);
 
   useEffect(() => {
-    const checkFn = validity;
-    setCheckToken(checkFn)
-  }, []);
+    let checkFn = validity;
+    setCheckToken(checkFn);
+  });
 
   const handleSubmit = (event) => {
     const body = event.currentTarget.elements;
     event.preventDefault();
-    fetch("http://localhost:3000/session/new", {
-      mode: "cors",
+    fetch("http://localhost:3000/session", {
       method: "POST",
+      mode: "cors",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json",
+        "Content-type": "application/json",
       },
       body: JSON.stringify({
-        firstname: body.firstname.value,
-        lastname: body.lastname.value,
         nickname: body.nickname.value,
         password: body.password.value,
-        confpassword: body.password.value,
       }),
     })
       .then((response) => response.json())
-      .then((response) => {
-        setResponse(response);
-      });
+      .then((response) => setResponse(response));
   };
 
   if (checkToken.data) {
@@ -49,9 +44,9 @@ function SignUp() {
   return (
     <>
       <Nav />
-      <main className={classes.mainSignUp}>
+      <main className={classes.mainLogIn}>
         <form onSubmit={handleSubmit}>
-          <h2>Registration</h2>
+          <h2>Login</h2>
           {response.errors && (
             <ul>
               {response.errors.map((error, index) => (
@@ -59,30 +54,13 @@ function SignUp() {
               ))}
             </ul>
           )}
-          {response.data && <p>{response.data}</p>}
-          <label htmlFor="firstname">First name</label>
-          <input
-            type="text"
-            id="firstname"
-            name="firstname"
-            minLength="5"
-            maxLength="20"
-            required
-          />
-          <label htmlFor="lastname">Last name</label>
-          <input
-            type="text"
-            id="lastname"
-            name="lastname"
-            minLength="5"
-            maxLength="20"
-            required
-          />
+          {response.data && localStorage.setItem("token", response.data)}
           <label htmlFor="nickname">Nickname</label>
           <input
             type="text"
             id="nickname"
             name="nickname"
+            minLength="5"
             maxLength="20"
             required
           />
@@ -94,22 +72,13 @@ function SignUp() {
             maxLength="25"
             required
           />
-          <label htmlFor="confpassword">Confirm password</label>
-          <input
-            type="password"
-            id="confpassword"
-            name="confpassword"
-            minLength="8"
-            maxLength="25"
-            required
-          />
-          <button type="submit">Sign up</button>
+          <button type="submit">Login</button>
         </form>
-        <h3 className={classes.textBeforeBrain}>Hi, I'm brain</h3>
+        <h3 className={classes.textBeforeBrain}>How are you?</h3>
         <img src={brain} className={classes.brain} />
       </main>
     </>
   );
 }
 
-export default SignUp;
+export default LogIn;
