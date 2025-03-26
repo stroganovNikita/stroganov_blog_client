@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import classes from "./nav.module.css";
 import checkTokenFetch from "../../javascript/checkTokenFetch";
 import logo from "../../../assets/logo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 function Nav() {
   const [currentLink, setCurrentLink] = useState(null);
   const [checkToken, setCheckToken] = useState(0);
-  const navigate = useNavigate();
 
   useEffect(() => {
     let checkFn = checkTokenFetch();
@@ -14,10 +13,9 @@ function Nav() {
   }, []);
 
   function logout() {
-    localStorage.removeItem('token');
-    window.location.reload()
-  }
-
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
 
   return (
     <nav>
@@ -34,7 +32,7 @@ function Nav() {
       <img src={logo} className={classes.logoImg} />
       <div className={classes.logoDivLink}>
         {checkToken.data ? (
-          <Link onClick={logout}>Log out</Link>
+          <Link onClick={logout} style={{marginRight: '6rem'}}>Log out</Link>
         ) : (
           <>
             <Link

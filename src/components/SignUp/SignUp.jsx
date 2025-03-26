@@ -1,18 +1,10 @@
-import { useState, useEffect } from "react";
-import checkTokenFetch from '../javascript/checkTokenFetch';
+import { useState } from "react";
 import Nav from "../partials/Nav/Nav";
 import classes from "./signup.module.css";
 import brain from "../../assets/brain.png";
 
 function SignUp() {
   const [response, setResponse] = useState(0);
-  const [checkToken, setCheckToken] = useState(0);
-
-  useEffect(() => {
-    let checkFn = checkTokenFetch();
-    checkFn.then((answer) => setCheckToken(answer))
-  }, []);
-
 
   const handleSubmit = (event) => {
     const body = event.currentTarget.elements;
@@ -37,15 +29,6 @@ function SignUp() {
         setResponse(response);
       });
   };
-
-  if (checkToken.data || response.data) {
-    return (
-      <>
-        <Nav />
-        <h2 className={classes.infoAuth}>You are authorize</h2>
-      </>
-    );
-  }
 
   return (
     <>

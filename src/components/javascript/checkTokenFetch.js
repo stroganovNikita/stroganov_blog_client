@@ -11,6 +11,6 @@ async function checkTokenFetch() {
     .then((response) => response.json())
     .then((response) => response);
     return response;
-};
+}
 
 export default checkTokenFetch;

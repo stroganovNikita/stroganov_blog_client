@@ -29,6 +29,14 @@
   margin-bottom: 15px;
   padding: 5px;
 }
+.mainLogIn ul {
+  padding-left: 20px;
+}
+.mainLogIn li {
+  color: red;
+  text-align: center;
+  font-size: 1.2rem;
+}
 .mainLogIn button {
   background-color: #bf4aa8;
   color: #51d0de;

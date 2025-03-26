@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import checkTokenFetch from "../javascript/checkTokenFetch";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Nav from "../partials/Nav/Nav";
 import classes from "./login.module.css";
 import brain from "../../assets/brain.png";
@@ -8,10 +8,12 @@ import brain from "../../assets/brain.png";
 function LogIn() {
   const [response, setResponse] = useState(0);
   const [checkToken, setCheckToken] = useState(0);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  console.log(response);
   useEffect(() => {
     let checkFn = checkTokenFetch();
-    checkFn.then((answer) => setCheckToken(answer))
+    checkFn.then((answer) => setCheckToken(answer));
   }, []);
 
   const handleSubmit = async (event) => {
@@ -33,10 +35,10 @@ function LogIn() {
       .then((response) => response.json())
       .then((response) => {
         answer = response;
+        setResponse(answer);
         if (answer.data) {
           localStorage.setItem("token", answer.data);
-          navigate('/')
-          setResponse({...answer});
+          navigate("/");
         }
       });
   };
