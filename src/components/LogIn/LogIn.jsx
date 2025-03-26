@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import validity from "../javascript/checkTokenFetch";
+import checkTokenFetch from "../javascript/checkTokenFetch";
+import { useNavigate } from 'react-router-dom';
 import Nav from "../partials/Nav/Nav";
 import classes from "./login.module.css";
 import brain from "../../assets/brain.png";
@@ -7,14 +8,15 @@ import brain from "../../assets/brain.png";
 function LogIn() {
   const [response, setResponse] = useState(0);
   const [checkToken, setCheckToken] = useState(0);
-
+  const navigate = useNavigate()
   useEffect(() => {
-    let checkFn = validity;
-    setCheckToken(checkFn);
-  });
+    let checkFn = checkTokenFetch();
+    checkFn.then((answer) => setCheckToken(answer))
+  }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     const body = event.currentTarget.elements;
+    let answer = "";
     event.preventDefault();
     fetch("http://localhost:3000/session", {
       method: "POST",
@@ -29,10 +31,17 @@ function LogIn() {
       }),
     })
       .then((response) => response.json())
-      .then((response) => setResponse(response));
+      .then((response) => {
+        answer = response;
+        if (answer.data) {
+          localStorage.setItem("token", answer.data);
+          navigate('/')
+          setResponse({...answer});
+        }
+      });
   };
 
-  if (checkToken.data) {
+  if (checkToken.data || response.data) {
     return (
       <>
         <Nav />
@@ -54,7 +63,7 @@ function LogIn() {
               ))}
             </ul>
           )}
-          {response.data && localStorage.setItem("token", response.data)}
+
           <label htmlFor="nickname">Nickname</label>
           <input
             type="text"

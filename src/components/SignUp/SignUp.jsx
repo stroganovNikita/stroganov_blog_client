@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import validity from '../javascript/checkTokenFetch';
+import checkTokenFetch from '../javascript/checkTokenFetch';
 import Nav from "../partials/Nav/Nav";
 import classes from "./signup.module.css";
 import brain from "../../assets/brain.png";
@@ -9,9 +9,10 @@ function SignUp() {
   const [checkToken, setCheckToken] = useState(0);
 
   useEffect(() => {
-    const checkFn = validity;
-    setCheckToken(checkFn)
+    let checkFn = checkTokenFetch();
+    checkFn.then((answer) => setCheckToken(answer))
   }, []);
+
 
   const handleSubmit = (event) => {
     const body = event.currentTarget.elements;
@@ -37,7 +38,7 @@ function SignUp() {
       });
   };
 
-  if (checkToken.data) {
+  if (checkToken.data || response.data) {
     return (
       <>
         <Nav />

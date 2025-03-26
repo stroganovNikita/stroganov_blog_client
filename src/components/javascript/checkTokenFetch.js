@@ -11,7 +11,6 @@ async function checkTokenFetch() {
     .then((response) => response.json())
     .then((response) => response);
     return response;
-}
-const validity = await checkTokenFetch();
+};
 
-export default validity;
+export default checkTokenFetch;

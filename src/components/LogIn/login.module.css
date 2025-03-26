@@ -67,10 +67,10 @@
   animation-delay: 0.9s;
 }
 .infoAuth {
-    text-align: center;
-    margin-top: 10rem;
-    color: #b40090;
-    font-size: 2rem;
+  text-align: center;
+  margin-top: 10rem;
+  color: #b40090;
+  font-size: 2rem;
 }
 
 @keyframes appearText {
