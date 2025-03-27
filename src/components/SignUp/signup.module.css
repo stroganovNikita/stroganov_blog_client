@@ -69,6 +69,7 @@
 .textBeforeBrain {
   position: fixed;
   right: 4%;
+  color: #51d0de;
   bottom: 28%;
   font-size: 1.7rem;
   animation: appearText 0.3s both;

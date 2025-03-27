@@ -27,7 +27,6 @@ function Nav() {
         >
           Articles
         </Link>
-        <a>About me</a>
       </div>
       <img src={logo} className={classes.logoImg} />
       <div className={classes.logoDivLink}>

@@ -1,0 +1,60 @@
+.mainPost {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+hr {
+    border: none;
+    border-bottom: 1px solid #bf4aa8;
+    width: 99%;
+}
+.postDiv {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
+    width: 45%;
+    margin-bottom: 10rem;
+}
+.postDiv h2 {
+    font-family: 'Roboto';
+    color: #51d0de;
+    letter-spacing: 1px;
+    font-size: 2rem;
+    text-align: center;
+}
+.postDiv p {
+    font-family: 'Roboto';
+    color: white;
+    font-size: 1.5rem;
+}
+.postDiv img {
+    border-bottom: 1px solid black;
+    border-radius: 10px;
+}
+.formPostComment {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+.formPostComment label {
+    font-size: 1.5rem;
+    color: #51d0de;
+    margin-bottom: 0.5rem;
+}
+.formPostComment textarea {
+  width: 40vw;
+  height: 80px;
+  resize: none;
+}
+.arrowBack {
+    position: absolute;
+    color: #bf4aa8;
+    cursor: pointer;
+    transition: color 0.2s;
+    size: 100px;
+    top: 50%;
+    left: 3%;
+}
+.arrowBack:hover {
+    color: #51d0de
+}
