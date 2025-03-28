@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Icon from "@mdi/react";
-import { mdiCommentMultiple, mdiCalendarClock, mdiArrowLeftCircle  } from "@mdi/js";
+import { mdiCommentMultiple, mdiCalendarClock, mdiLoading } from "@mdi/js";
 import classes from "./app.module.css";
 import { fetchPosts } from "../javascript/posts.js";
 import { Link } from "react-router-dom";
@@ -11,12 +11,16 @@ function App() {
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {
+    try {
     const promisePosts = fetchPosts();
     promisePosts
       .then((promise) => promise.json())
       .then((promise) => setPosts(promise));
+    } catch {
+      console.log('failed fetch')
+    }
   }, []);
-  console.log(posts);
+
   return (
     <>
       <Nav />
@@ -26,7 +30,7 @@ function App() {
           {posts &&
             posts.posts.map((post, index) => {
               return (
-                <Link to={`/posts/${post.id}`}>
+                <Link to={`/posts/${post.id}`} key={index} viewTransition>
                   <div key={index} className={classes.postDiv}>
                     <img src="https://cyfgfocmixveitalwndg.supabase.co/storage/v1/object/public/blog//welcome4.jpg" />
                     <div className={classes.postHeader}>
@@ -58,6 +62,7 @@ function App() {
                 </Link>
               );
             })}
+            {!posts && <Icon path={mdiLoading} size={5} className={classes.loading}/>}
         </div>
       </main>
     </>

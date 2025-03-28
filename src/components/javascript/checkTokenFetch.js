@@ -1,4 +1,5 @@
 async function checkTokenFetch() {
+  try {
   const token = localStorage.getItem("token");
   const response = await fetch("http://localhost:3000/session/verify", {
     method: "GET",
@@ -11,6 +12,9 @@ async function checkTokenFetch() {
     .then((response) => response.json())
     .then((response) => response);
     return response;
+  } catch {
+    return {errors: [{msg: 'Error during fetch'}]}
+  }
 }
 
 export default checkTokenFetch;

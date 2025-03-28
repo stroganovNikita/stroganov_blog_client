@@ -1,10 +1,14 @@
 async function fetchPosts() {
-  const posts = await fetch('http://localhost:3000/posts', {
-    method: 'GET',
-    mode: 'cors',
-  });
-  
-  return posts
-};
+  try {
+    const posts = await fetch("http://localhost:3000/posts", {
+      method: "GET",
+      mode: "cors",
+    });
 
-export {fetchPosts};
+    return posts;
+  } catch {
+    return { errors: [{ msg: "Error during fetch" }] };
+  }
+}
+
+export { fetchPosts };

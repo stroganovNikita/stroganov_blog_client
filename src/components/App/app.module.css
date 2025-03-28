@@ -93,6 +93,22 @@ a {
   margin-top: 5rem;
   float: left;
 }
+.loading {
+  color: #bf4aa8;
+  margin: auto;
+  margin-top: 3rem;
+  animation: loading 1.3s infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: 0;
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
 @keyframes appearText {
   0% {
     opacity: 0;

@@ -15,7 +15,7 @@ function Nav() {
   function logout() {
     localStorage.removeItem("token");
     window.location.reload();
-  };
+  }
 
   return (
     <nav>
@@ -24,6 +24,7 @@ function Nav() {
           to="/"
           onClick={() => setCurrentLink(0)}
           className={window.location.pathname === "/" ? classes.underline : ""}
+          viewTransition
         >
           Articles
         </Link>
@@ -31,7 +32,9 @@ function Nav() {
       <img src={logo} className={classes.logoImg} />
       <div className={classes.logoDivLink}>
         {checkToken.data ? (
-          <Link onClick={logout} style={{marginRight: '6rem'}}>Log out</Link>
+          <Link onClick={logout} style={{ marginRight: "6rem" }} viewTransition>
+            Log out
+          </Link>
         ) : (
           <>
             <Link
@@ -40,6 +43,7 @@ function Nav() {
               className={
                 window.location.pathname === "/session" ? classes.underline : ""
               }
+              viewTransition
             >
               Log in
             </Link>
@@ -51,6 +55,7 @@ function Nav() {
                   ? classes.underline
                   : ""
               }
+              viewTransition
             >
               Sign up
             </Link>
