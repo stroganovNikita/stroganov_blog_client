@@ -5,11 +5,13 @@ a {
   display: flex;
   justify-self: center;
   border-top: 2px solid #bf4aa8;
+  gap: 3rem;
+  flex-wrap: wrap;
   border-radius: 30px;
   margin: 30px;
   padding: 30px;
   width: 70%;
-  justify-content: left;
+  justify-content: space-evenly;
 }
 .postDiv {
   width: 350px;
@@ -17,6 +19,7 @@ a {
   border: 1px solid #000000;
   border-radius: 20px;
   box-shadow: 0 0 10px #bf4aa8;
+  margin-bottom: 2rem;
   transition: box-shadow 0.2s;
   cursor: pointer;
 }
